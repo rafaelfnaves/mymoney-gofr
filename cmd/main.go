@@ -16,6 +16,8 @@ func main() {
 	// register routes
 	app.POST("/expenses", handlers.AddExpense)
 	app.GET("/expenses", handlers.ListExpenses)
+	app.GET("/expenses/{id}", handlers.GetExpense)
+	app.DELETE("/expenses/{id}", handlers.DeleteExpense)
 
 	// Runs the server
 	app.Run()

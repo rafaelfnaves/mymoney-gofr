@@ -6,8 +6,16 @@ POST http://localhost:8000/expenses
 Content-Type: application/json
 
 {
-  "title": "Business Lunch",
-  "payment_type": "Meals",
-  "description": "Lunch with client",
-  "value": 50.00
+  "title": "Combustível",
+  "payment_type": "card",
+  "description": "Abastecimento do carro",
+  "value": 120.00
 }
+
+###
+
+GET http://localhost:8000/expenses/290bc651-18e2-4aed-9476-9576f4a41836
+
+###
+
+DELETE http://localhost:8000/expenses/b5bec763-0f88-490b-8c93-d5646f310ac7

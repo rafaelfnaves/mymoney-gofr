@@ -57,3 +57,34 @@ func ListExpenses(ctx *gofr.Context) (any, error) {
 	}
 	return expenses, nil
 }
+
+func GetExpense(ctx *gofr.Context) (any, error) {
+	id := ctx.PathParam("id")
+	var expense models.Expense
+
+	err := ctx.SQL.QueryRowContext(
+		ctx,
+		"SELECT id, title, description, value, payment_type, created_at FROM expenses WHERE id = $1",
+		id,
+	).Scan(&expense.ID, &expense.Title, &expense.Description, &expense.Value, &expense.PaymentType, &expense.CreatedAt)
+	if err != nil {
+		return nil, err
+	}
+
+	return expense, nil
+}
+
+func DeleteExpense(ctx *gofr.Context) (any, error) {
+	id := ctx.PathParam("id")
+
+	_, err := ctx.SQL.ExecContext(
+		ctx,
+		"DELETE FROM expenses WHERE id = $1",
+		id,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return nil, nil
+}
