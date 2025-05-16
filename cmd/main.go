@@ -1,17 +1,22 @@
 package main
 
-import "gofr.dev/pkg/gofr"
+import (
+	"github.com/rafaelfnaves/mymoney-gofr/migrations"
+	"gofr.dev/pkg/gofr"
+)
 
 func main() {
-	// initialize gofr object
+	// initialize gofr
 	app := gofr.New()
 
-	// register route greet
+	// Run migrations
+	app.Migrate(migrations.All())
+
+	// register routes
 	app.GET("/greet", func(ctx *gofr.Context) (any, error) {
 		return "Hello World!", nil
 	})
 
-	// Runs the server, it will listen on the default port 8000.
-	// it can be over-ridden through configs
+	// Runs the server
 	app.Run()
 }
