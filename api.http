@@ -1,21 +1,28 @@
-GET http://localhost:8000/expenses
-
-###
-
+# Create a new expense
+# @name addExpense
 POST http://localhost:8000/expenses
 Content-Type: application/json
 
 {
-  "title": "Combustível",
+  "title": "Dinner with friends",
   "payment_type": "card",
-  "description": "Abastecimento do carro",
+  "description": "Dinner at a fancy restaurant",
   "value": 120.00
 }
 
 ###
 
-GET http://localhost:8000/expenses/290bc651-18e2-4aed-9476-9576f4a41836
+# List all expenses
+GET http://localhost:8000/expenses
 
 ###
 
-DELETE http://localhost:8000/expenses/b5bec763-0f88-490b-8c93-d5646f310ac7
+# Get a expense by ID
+@expenseID = {{addExpense.response.body.data.id}}
+GET http://localhost:8000/expenses/{{expenseID}}
+
+###
+
+# Delete a expense by ID
+@expenseID = {{addExpense.response.body.data.id}}
+DELETE http://localhost:8000/expenses/{{expenseID}}
