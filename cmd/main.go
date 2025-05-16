@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/rafaelfnaves/mymoney-gofr/internal/handlers"
 	"github.com/rafaelfnaves/mymoney-gofr/migrations"
 	"gofr.dev/pkg/gofr"
 )
@@ -13,9 +14,8 @@ func main() {
 	app.Migrate(migrations.All())
 
 	// register routes
-	app.GET("/greet", func(ctx *gofr.Context) (any, error) {
-		return "Hello World!", nil
-	})
+	app.POST("/expenses", handlers.AddExpense)
+	app.GET("/expenses", handlers.ListExpenses)
 
 	// Runs the server
 	app.Run()

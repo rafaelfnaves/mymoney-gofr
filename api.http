@@ -1,0 +1,13 @@
+GET http://localhost:8000/expenses
+
+###
+
+POST http://localhost:8000/expenses
+Content-Type: application/json
+
+{
+  "title": "Business Lunch",
+  "payment_type": "Meals",
+  "description": "Lunch with client",
+  "value": 50.00
+}
